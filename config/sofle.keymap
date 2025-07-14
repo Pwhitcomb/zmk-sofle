@@ -29,8 +29,8 @@
         compatible = "zmk,conditional-layers";
 
         adjust_layer {
-            if-layers = <LOWER RAISE>;
-            then-layer = <ADJUST>;
+            if-layers = <1 2>;
+            then-layer = <3>;
         };
     };
 
@@ -61,11 +61,27 @@
             continue-list = <POUND MINUS BACKSPACE UNDERSCORE>;
         };
 
-        window_swap: window_swap {
+        window_forward: window_forward {
+            compatible = "zmk,behavior-caps-word";
+            label = "WINDOW_FORWARD";
+            #binding-cells = <0>;
+            continue-list = <TAB>;
+            mods = <(MOD_LALT)>;
+        };
+
+        window_backward: window_backward {
+            compatible = "zmk,behavior-caps-word";
+            label = "WINDOW_BACKWARD";
+            #binding-cells = <0>;
+            continue-list = <TAB>;
+            mods = <(MOD_LSFT|MOD_LALT)>;
+        };
+
+        test: test {
             compatible = "zmk,behavior-sensor-rotate";
-            label = "WINDOW_SWAP";
+            label = "TEST";
             #sensor-binding-cells = <0>;
-            bindings = <&kp LG(LS(TAB))>, <&kp LG(TAB)>;
+            bindings = <&window_forward>, <&window_backward>;
         };
     };
 
@@ -83,11 +99,11 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&gresc            &kp N1       &kp N2    &kp N3    &kp N4            &kp N5                                         &kp N6               &kp N7             &kp N8     &kp N9         &kp N0    &kp MINUS
-&kp TAB           &kp Q        &kp W     &kp E     &kp R             &kp T                                          &kp Y                &kp U              &kp I      &kp O          &kp P     &kp BSPC
-&kp LEFT_SHIFT    &kp A        &kp S     &kp D     &mt LEFT_SHIFT F  &kp G                                          &kp H                &mt RIGHT_SHIFT J  &kp K      &kp L          &kp SEMI  &kp SQT
-&kp LEFT_CONTROL  &mt LCTRL Z  &kp X     &kp C     &kp V             &kp B          &kt C_MUTE    &kp C_PLAY_PAUSE  &kp N                &kp M              &kp COMMA  &mt RCTRL DOT  &kp FSLH  &kp RSHFT
-                               &kp LGUI  &kp LALT  &kp LCTRL         &lt LOWER TAB  &kp ENTER     &kp SPACE         &lt RAISE BACKSPACE  &kp RCTRL          &kp LALT   &kp RGUI
+&gresc            &kp N1       &kp N2    &kp N3    &kp N4            &kp N5                                     &kp N6           &kp N7             &kp N8     &kp N9         &kp N0    &kp MINUS
+&kp TAB           &kp Q        &kp W     &kp E     &kp R             &kp T                                      &kp Y            &kp U              &kp I      &kp O          &kp P     &kp BSPC
+&kp LEFT_SHIFT    &kp A        &kp S     &kp D     &mt LEFT_SHIFT F  &kp G                                      &kp H            &mt RIGHT_SHIFT J  &kp K      &kp L          &kp SEMI  &kp SQT
+&kp LEFT_CONTROL  &mt LCTRL Z  &kp X     &kp C     &kp V             &kp B      &kt C_MUTE    &kp C_PLAY_PAUSE  &kp N            &kp M              &kp COMMA  &mt RCTRL DOT  &kp FSLH  &kp RSHFT
+                               &kp LGUI  &kp LALT  &kp LCTRL         &lt 1 TAB  &kp ENTER     &kp SPACE         &lt 2 BACKSPACE  &kp RCTRL          &kp LALT   &kp RGUI
             >;
 
             sensor-bindings =
@@ -157,7 +173,7 @@
                                  &none         &none         &none         &none           &none    &none  &none  &none  &none  &none
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&test>, <&inc_dec_kp PG_UP PG_DN>;
         };
     };
 };
