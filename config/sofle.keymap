@@ -61,34 +61,12 @@
             continue-list = <POUND MINUS BACKSPACE UNDERSCORE>;
         };
 
-        window_forward: window_forward {
+        window_cycle: window_cycle {
             compatible = "zmk,behavior-caps-word";
-            label = "WINDOW_FORWARD";
-            #binding-cells = <0>;
-            continue-list = <TAB>;
-            mods = <(MOD_LALT)>;
-        };
-
-        window_backward: window_backward {
-            compatible = "zmk,behavior-caps-word";
-            label = "WINDOW_BACKWARD";
+            label = "WINDOW_CYCLE";
             #binding-cells = <0>;
             continue-list = <TAB>;
             mods = <(MOD_LSFT|MOD_LALT)>;
-        };
-
-        test: test {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "TEST";
-            #sensor-binding-cells = <0>;
-            bindings = <&window_forward>, <&window_backward>;
-        };
-
-        test2: test2 {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            label = "TEST2";
-            #sensor-binding-cells = <2>;
-            bindings = <&window_forward>, <&window_backward>;
         };
     };
 
@@ -173,14 +151,16 @@
 
             display-name = "System";
             bindings = <
-&bt BT_CLR_ALL     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &none  &none            &none             &none  &none  &none
-&ext_power EP_TOG  &bt BT_CLR    &none         &none         &none         &studio_unlock                  &none  &none            &none             &none  &none  &none
-&none              &none         &none         &none         &none         &none                           &none  &window_forward  &window_backward  &none  &none  &none
-&none              &none         &none         &none         &none         &caps_word      &none    &none  &none  &none            &none             &none  &none  &none
-                                 &none         &none         &none         &none           &none    &none  &none  &none            &none             &none
+&bt BT_CLR_ALL     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                            &none  &none  &none          &none  &none  &none
+&ext_power EP_TOG  &bt BT_CLR    &none         &none         &none         &studio_unlock                          &none  &none  &none          &none  &none  &none
+&none              &none         &none         &none         &none         &none                                   &none  &none  &window_cycle  &none  &none  &none
+&none              &none         &none         &none         &none         &caps_word      &window_cycle    &none  &none  &none  &none          &none  &none  &none
+                                 &none         &none         &none         &none           &none            &none  &none  &none  &none          &none
             >;
 
-            sensor-bindings = <&test2 0 0>, <&inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings =
+                <&inc_dec_kp TAB LS(TAB)>,
+                <&inc_dec_kp PG_UP PG_DN>;
         };
     };
 };
