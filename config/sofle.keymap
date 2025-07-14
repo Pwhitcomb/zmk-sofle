@@ -65,8 +65,8 @@
             compatible = "zmk,behavior-caps-word";
             label = "WINDOW_CYCLE";
             #binding-cells = <0>;
-            continue-list = <TAB>;
-            mods = <(MOD_LSFT|MOD_LALT)>;
+            continue-list = <TAB LSHIFT LEFT_SHIFT>;
+            mods = <(MOD_LALT)>;
         };
     };
 
@@ -138,7 +138,9 @@
                     &trans     &trans       &trans       &trans    &trans    &trans  &trans     &trans    &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings =
+                <&inc_dec_kp C_AL_NEXT_TASK C_AL_PREV_TASK>,
+                <&inc_dec_kp PG_UP PG_DN>;
         };
 
         adjust_layer {
