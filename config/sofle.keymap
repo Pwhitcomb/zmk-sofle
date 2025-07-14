@@ -65,7 +65,7 @@
             compatible = "zmk,behavior-caps-word";
             label = "NEW_BEHAVIOR";
             #binding-cells = <0>;
-            continue-list = <TAB>;
+            continue-list = <TAB LEFT_SHIFT>;
             mods = <(MOD_LALT)>;
         };
     };
