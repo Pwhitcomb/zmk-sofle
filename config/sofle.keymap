@@ -67,6 +67,12 @@
             #binding-cells = <0>;
             bindings = <&kp BACKSPACE>, <&kp LC(BACKSPACE)>;
         };
+        swapper: swapper {
+            compatible = "zmk,behaivor-smart-toggle";
+            #binding-cells = <0>
+            binding = <&k LALT>, <&kp TAB>;
+            ignored-key-positions = <1>;
+        };
     };
 
     keymap {
@@ -91,7 +97,7 @@
             >;
 
             sensor-bindings =
-                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp swapper LS(TAB)>,
                 <&inc_dec_kp PG_UP PG_DN>;
         };
 
