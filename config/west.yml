@@ -14,5 +14,6 @@ manifest:
     - name: swapper
       remote: zmk-smart-toggle
       revision: main
+      import: west.yml
   self:
     path: config
