@@ -69,7 +69,7 @@
         };
 
         swapper: swapper {
-            compatible = "zmk,behaivor-smart-toggle";
+            compatible = "zmk,behavior-smart-toggle";
             #binding-cells = <0>;
             bindings = <&kp LALT>, <&kp TAB>;
             ignored-key-positions = <1>;
