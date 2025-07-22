@@ -70,7 +70,7 @@
         swapper: swapper {
             compatible = "zmk,behaivor-smart-toggle";
             #binding-cells = <0>;
-            binding = <&kp LALT>, <&kp TAB>;
+            bindings = <&kp LALT>, <&kp TAB>;
             ignored-key-positions = <1>;
         };
     };
