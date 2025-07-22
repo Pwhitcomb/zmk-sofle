@@ -67,6 +67,7 @@
             #binding-cells = <0>;
             bindings = <&kp BACKSPACE>, <&kp LC(BACKSPACE)>;
         };
+
         swapper: swapper {
             compatible = "zmk,behaivor-smart-toggle";
             #binding-cells = <0>;
